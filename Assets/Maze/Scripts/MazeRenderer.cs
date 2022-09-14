@@ -28,17 +28,41 @@ public class MazeRenderer : MonoBehaviour
     [SerializeField]
     private Transform bridge4Prefab = null;
 
+
+    [SerializeField]
+    private Transform bridgeH1Prefab = null;
+    [SerializeField]
+    private Transform bridgeH2Prefab = null;
+    [SerializeField]
+    private Transform bridgeH3Prefab = null;
+    [SerializeField]
+    private Transform bridgeH4Prefab = null;
+
+
     [SerializeField]
     private Transform targetPrefab = null;
 
+    [SerializeField]
+    private bool difficulty = true;
+
     void Start()
     {
+        if (difficulty)
+        {
+            bridge1Prefab = bridgeH1Prefab;
+            bridge2Prefab = bridgeH2Prefab;
+            bridge3Prefab = bridgeH3Prefab;
+            bridge4Prefab = bridgeH4Prefab;
+        }
+
         var maze = MazeGenerator.Generate(width, height);
         Draw(maze);
 
         // SPAWN TARGET PREFAB
         var target = Instantiate(targetPrefab, transform) as Transform;
         target.position = new Vector3(width - 1, 0.55f, height - 1);
+
+         
 
     }
 
