@@ -35,8 +35,8 @@ public class TiltMaze : MonoBehaviour
         Debug.Log(Mathf.Abs(Mathf.Repeat(transform.eulerAngles.x + 180, 360) - 180) + amount);
         transform.Rotate(amount, 0, 0);
         transform.rotation = Quaternion.Euler(Mathf.Clamp(Mathf.Repeat(transform.eulerAngles.x + 180, 360) - 180, -maxXRotation, maxXRotation), transform.eulerAngles.y, transform.eulerAngles.z);
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<BoxCollider>().enabled = true;
+        //GetComponent<BoxCollider>().enabled = false;
+        //GetComponent<BoxCollider>().enabled = true;
 
     }
 
@@ -44,8 +44,8 @@ public class TiltMaze : MonoBehaviour
     {
         transform.Rotate(0, 0, amount);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x , transform.eulerAngles.y, Mathf.Clamp(Mathf.Repeat(transform.eulerAngles.z + 180, 360) - 180, -maxZRotation, maxZRotation));
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<BoxCollider>().enabled = true;
+        //GetComponent<BoxCollider>().enabled = false;
+        //GetComponent<BoxCollider>().enabled = true;
     }
 
 }
