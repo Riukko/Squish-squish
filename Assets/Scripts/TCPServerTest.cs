@@ -10,7 +10,9 @@ public class TCPServerTest : MonoBehaviour
 {
 	[SerializeField] private string m_hostIP = "127.0.0.1";
 	[SerializeField] private int m_port = 25025;
-	
+
+	public delegate void IncomingMessageEvent(string message);
+	public static event IncomingMessageEvent OnIncomingMessage;
 	/// <summary> 	
 	/// TCPListener to listen for incomming TCP connection
 	/// requests. 	
@@ -60,6 +62,7 @@ public class TCPServerTest : MonoBehaviour
 						// Convert byte array to string message.
 						string clientMessage = Encoding.ASCII.GetString(incommingData);
 						Debug.Log("client message received as: " + clientMessage);
+						OnIncomingMessage?.Invoke(clientMessage);
 					}
 				}
 
