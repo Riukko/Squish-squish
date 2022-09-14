@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0.30188695, b: 0.9056604, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -386,8 +386,17 @@ MonoBehaviour:
     type: 3}
   bridge4Prefab: {fileID: 3495958046185666090, guid: 6225ae9c160ed474d88b55881f322988,
     type: 3}
+  bridgeH1Prefab: {fileID: 3495958046185666090, guid: 8442eb4c0ef5c3f44908135554b690c9,
+    type: 3}
+  bridgeH2Prefab: {fileID: 3495958046185666090, guid: 2c5ee68530790474f9231cfe10897daa,
+    type: 3}
+  bridgeH3Prefab: {fileID: 3495958046185666090, guid: 1246aa7866d43c242ae820a5c5b001ac,
+    type: 3}
+  bridgeH4Prefab: {fileID: 3495958046185666090, guid: ff505a42284291e4b96a8e448a6f66b8,
+    type: 3}
   targetPrefab: {fileID: 634900085634603167, guid: 3af7fa3359c593a479b879a28aa9e0b9,
     type: 3}
+  difficulty: 0
 --- !u!4 &1554107182
 Transform:
   m_ObjectHideFlags: 0
