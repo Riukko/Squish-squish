@@ -163,6 +163,8 @@ MonoBehaviour:
   yMoveForce: 0
   zMoveForce: 0
   moveBallWithArrowKeys: 1
+  jumpForce: 10
+  hasJumped: 0
 --- !u!1 &525984597609092006
 GameObject:
   m_ObjectHideFlags: 0
