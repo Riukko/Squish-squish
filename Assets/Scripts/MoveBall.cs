@@ -17,6 +17,8 @@ public class MoveBall : MonoBehaviour
 
     public bool hasJumped;
 
+    public GameObject vfxJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +75,18 @@ public class MoveBall : MonoBehaviour
         {
             hasJumped = false;
             this.GetComponentInChildren<TrailRenderer>().enabled = false;
+            var vfx = Instantiate(vfxJump, collision.contacts[0].point, Quaternion.identity);
+            vfx.transform.parent = transform;
+            vfx.transform.rotation = Quaternion.identity;
+            vfx.transform.localScale = Vector3.one * 0.02f;
+            StartCoroutine(DestroyVFX(vfx, vfx.GetComponent<ParticleSystem>().main.duration));
         }
+    }
+
+    private IEnumerator DestroyVFX(GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(obj);
     }
 
     #region TCP Messages managements

@@ -23,9 +23,6 @@ public class MazeRenderer : MonoBehaviour
     private List<Material> ballMatsList = new List<Material>();
 
     [SerializeField]
-    bool difficulty = false;
-
-    [SerializeField]
     private Transform targetPrefab = null;
 
     [SerializeField]
@@ -44,7 +41,7 @@ public class MazeRenderer : MonoBehaviour
 
     void Start()
     {
-        if (difficulty)
+        if (PlayerPrefs.GetInt("difficulty") == 1)
         {
             bridgePrefab[0] = bridgeHPrefab[0];
             bridgePrefab[1] = bridgeHPrefab[1];
