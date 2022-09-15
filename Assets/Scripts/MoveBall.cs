@@ -62,6 +62,7 @@ public class MoveBall : MonoBehaviour
         {
             rb.AddForce(sphereForward.up * jumpForce, ForceMode.Impulse);
             hasJumped = true;
+            this.GetComponentInChildren<TrailRenderer>().enabled = true;
         }
             
     }
@@ -71,6 +72,7 @@ public class MoveBall : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && hasJumped)
         {
             hasJumped = false;
+            this.GetComponentInChildren<TrailRenderer>().enabled = false;
         }
     }
 

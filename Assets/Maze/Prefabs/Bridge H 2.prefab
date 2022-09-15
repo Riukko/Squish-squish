@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5117847843392585556}
   - component: {fileID: 1414830116318270456}
   - component: {fileID: 4949480843008794131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bridge H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3495958046185666090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bridge H 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
