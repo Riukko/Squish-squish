@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using System.Linq;
+using System.Threading;
 
 public class MoveBall : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MoveBall : MonoBehaviour
     public float jumpForce;
 
     public bool hasJumped;
+    public bool jump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class MoveBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ////Arrow keys movements
         if (moveBallWithArrowKeys)
         {
 
@@ -51,9 +54,14 @@ public class MoveBall : MonoBehaviour
                 JumpBall();
             }
         }
-
-        rb.AddForce(sphereForward.right * moveForce * yMoveForce);
-        rb.AddForce(sphereForward.forward * moveForce * zMoveForce);
+        ////
+        ////Arduino movements
+        if (jump)
+        {
+            JumpBall();
+        }
+        rb.AddForce(sphereForward.right * moveForce * zMoveForce);
+        rb.AddForce(sphereForward.forward * moveForce * yMoveForce);
     }
 
     public void JumpBall()
@@ -62,6 +70,7 @@ public class MoveBall : MonoBehaviour
         {
             rb.AddForce(sphereForward.up * jumpForce, ForceMode.Impulse);
             hasJumped = true;
+            jump = false;
         }
             
     }
@@ -77,6 +86,9 @@ public class MoveBall : MonoBehaviour
     #region TCP Messages managements
     void ManageBallControllerInputs(string tcpMessage)
     {
+        List<float> xInputs = new List<float>();
+        List<float> yInputs = new List<float>();
+        List<float> zInputs = new List<float>();
         string[] messages = tcpMessage.Split(';');
         messages = messages.Take(messages.Length - 1).ToArray();
 
@@ -86,9 +98,6 @@ public class MoveBall : MonoBehaviour
             {
                 //Debug.Log(message);
                 string[] inputs = message.Split(':');
-                List<float> xInputs = new List<float>();
-                List<float> yInputs = new List<float>();
-                List<float> zInputs = new List<float>();
                 if (inputs.Length > 1 && !string.IsNullOrEmpty(inputs[1]))
                 {
                     switch (inputs[0])
@@ -98,7 +107,6 @@ public class MoveBall : MonoBehaviour
                             break;
 
                         case "Y":
-                            //Debug.Log(inputs[1]);
                             yInputs.Add(float.Parse(inputs[1], CultureInfo.InvariantCulture.NumberFormat));
                             break;
 
@@ -106,20 +114,25 @@ public class MoveBall : MonoBehaviour
                             zInputs.Add(float.Parse(inputs[1], CultureInfo.InvariantCulture.NumberFormat));
                             break;
                     }
-                    string debug = "";
+                    string debugY = "Y inputs : ";
+                    string debugZ = "Z inputs : ";
                     for (int i = 0; i < yInputs.Count; i++)
                     {
-                        debug += yInputs[i].ToString();
-                        debug += "; ";
+                        debugY += yInputs[i].ToString();
+                        debugY += "; ";
                     }
-                    Debug.Log(debug);
-                    zMoveForce = averageList(zInputs);
-                    yMoveForce = averageList(yInputs);
-                    //xMoveForce = averageList(xInputs);
+                    for (int i = 0; i < zInputs.Count; i++)
+                    {
+                        debugZ += zInputs[i].ToString();
+                        debugZ += "; ";
+                    }
+                    zMoveForce = averageList(zInputs, zMoveForce);
+                    yMoveForce = averageList(yInputs, yMoveForce);
+                    xMoveForce = averageList(xInputs, xMoveForce);
                 }
-                else
+                else if (inputs[0] == "JUMP")
                 {
-
+                    jump = true;
                 }
                 
             }
@@ -127,7 +140,7 @@ public class MoveBall : MonoBehaviour
     }
     
 
-    float averageList(List<float> floatList)
+    float averageList(List<float> floatList, float moveForce = 0)
     {
         if(floatList.Count != 0)
         {
@@ -140,7 +153,7 @@ public class MoveBall : MonoBehaviour
         }
         else
         {
-            return 0;
+            return moveForce;
         }
             
     }

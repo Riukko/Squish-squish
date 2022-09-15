@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Net; 
 using System.Net.Sockets; 
 using System.Text; 
@@ -61,7 +62,7 @@ public class TCPServerTest : MonoBehaviour
 						Array.Copy(bytes, 0, incommingData, 0, length);
 						// Convert byte array to string message.
 						string clientMessage = Encoding.ASCII.GetString(incommingData);
-						//Debug.Log("client message received as: " + clientMessage);
+						Debug.Log("client message received as: " + clientMessage);
 						OnIncomingMessage?.Invoke(clientMessage);
 					}
 				}

@@ -487,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 1597544328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.12204504, y: 9.372512, z: 16.738491}
-  m_LocalScale: {x: 5.6994066, y: 0.6071518, z: 0.14350314}
+  m_LocalScale: {x: 5.6994066, y: 10.838266, z: 0.14350314}
   m_Children: []
   m_Father: {fileID: 1193929950}
   m_RootOrder: 0
@@ -580,7 +580,7 @@ Transform:
   m_GameObject: {fileID: 1660669049}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 2.655905, y: 9.372512, z: 12.498091}
-  m_LocalScale: {x: 8.337208, y: 0.6071518, z: 0.14350314}
+  m_LocalScale: {x: 8.337208, y: 10.838266, z: 0.14350314}
   m_Children: []
   m_Father: {fileID: 1193929950}
   m_RootOrder: 3
@@ -718,7 +718,7 @@ Transform:
   m_GameObject: {fileID: 1924321113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.12204504, y: 9.372512, z: 8.287392}
-  m_LocalScale: {x: 5.6994066, y: 0.6071518, z: 0.14350314}
+  m_LocalScale: {x: 5.6994066, y: 10.838266, z: 0.14350314}
   m_Children: []
   m_Father: {fileID: 1193929950}
   m_RootOrder: 1
@@ -811,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 2017077999}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -2.900045, y: 9.372512, z: 12.527791}
-  m_LocalScale: {x: 8.337208, y: 0.6071518, z: 0.14350314}
+  m_LocalScale: {x: 8.337208, y: 10.838266, z: 0.14350314}
   m_Children: []
   m_Father: {fileID: 1193929950}
   m_RootOrder: 2
@@ -885,18 +885,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 525984596540629728, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
         type: 3}
-      propertyPath: jumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 525984596540629728, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
-        type: 3}
       propertyPath: moveForce
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 525984596540629728, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
-        type: 3}
-      propertyPath: moveBallWithArrowKeys
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 525984596540629729, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
         type: 3}
