@@ -23,9 +23,6 @@ public class MazeRenderer : MonoBehaviour
     private List<Material> ballMatsList = new List<Material>();
 
     [SerializeField]
-    private bool difficulty = true;
-
-    [SerializeField]
     private Transform targetPrefab = null;
 
     [SerializeField]
@@ -36,13 +33,15 @@ public class MazeRenderer : MonoBehaviour
     [SerializeField]
     private Material skyboxMat = null;
     [SerializeField]
+    private Material fogMat = null;
+    [SerializeField]
     private Material mazeMat = null;
 
     private Material ballMat = null;
 
     void Start()
     {
-        if (difficulty)
+        if (PlayerPrefs.GetInt("difficulty") == 1)
         {
             bridgePrefab[0] = bridgeHPrefab[0];
             bridgePrefab[1] = bridgeHPrefab[1];
@@ -60,17 +59,12 @@ public class MazeRenderer : MonoBehaviour
 
         // SPAWN TARGET PREFAB
         var target = Instantiate(targetPrefab, transform) as Transform;
-        target.position = new Vector3(width - 1, 0.55f, height - 1);
-
-        
+        target.position = new Vector3(width - 1, 2.6f, height - 1);
 
     }
 
     private void Draw(WallState[,] maze)
     {
-        //var floor = Instantiate(floorPrefab, transform);
-        //floor.localScale = new Vector3(width, 1, height);
-
         for (int i = 0; i < width; ++i)
         {
             for (int j = 0; j < height; ++j)
@@ -153,22 +147,21 @@ public class MazeRenderer : MonoBehaviour
 
 
             }
-
         }
-
     }
 
     private void RandomColor()
     {
         float H, S, V;
-        Color color1 = colors[Random.Range(0, colors.Count)];
+        var color1 = colors[Random.Range(0, colors.Count)];
         Color.RGBToHSV(color1,out H, out S, out V);
-        Color color2 = Color.HSVToRGB(((H + 120)%360) / 360, 0.75f, 1);
-        Color color3 = Color.HSVToRGB(((((H + 120) % 360) + 120)%360) / 360, 0.75f, 1);
+        var color2 = Color.HSVToRGB((H + 0.33f) % 1, 0.75f, 1);
+        var color3 = Color.HSVToRGB((H + 0.66f) % 1, 0.75f, 1);
 
-        mazeMat.SetColor("_Color", color2);
+        mazeMat.color = color2;
         skyboxMat.SetColor("_Color2", color1);
-        ballMat.SetColor("_Color", color3);
+        ballMat.color = color3;
+        fogMat.SetColor("_FogColor", Color.HSVToRGB(H,0.5f,V));
     }
 
 }
