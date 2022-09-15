@@ -14,46 +14,46 @@ public class MazeRenderer : MonoBehaviour
     private int height = 10;
 
     [SerializeField]
-    private float size = 1f;
+    private List<Transform> bridgePrefab = new List<Transform>();
 
     [SerializeField]
-    private Transform floorPrefab = null;
+    private List<Transform> bridgeHPrefab = new List<Transform>();
 
     [SerializeField]
-    private Transform bridge1Prefab = null;
-    [SerializeField]
-    private Transform bridge2Prefab = null;
-    [SerializeField]
-    private Transform bridge3Prefab = null;
-    [SerializeField]
-    private Transform bridge4Prefab = null;
-
+    private List<Material> ballMatsList = new List<Material>();
 
     [SerializeField]
-    private Transform bridgeH1Prefab = null;
-    [SerializeField]
-    private Transform bridgeH2Prefab = null;
-    [SerializeField]
-    private Transform bridgeH3Prefab = null;
-    [SerializeField]
-    private Transform bridgeH4Prefab = null;
-
+    private bool difficulty = true;
 
     [SerializeField]
     private Transform targetPrefab = null;
 
     [SerializeField]
-    private bool difficulty = true;
+    private GameObject playerPrefab = null;
+
+    [SerializeField]
+    private List<Color> colors = new List<Color>();
+    [SerializeField]
+    private Material skyboxMat = null;
+    [SerializeField]
+    private Material mazeMat = null;
+
+    private Material ballMat = null;
 
     void Start()
     {
         if (difficulty)
         {
-            bridge1Prefab = bridgeH1Prefab;
-            bridge2Prefab = bridgeH2Prefab;
-            bridge3Prefab = bridgeH3Prefab;
-            bridge4Prefab = bridgeH4Prefab;
+            bridgePrefab[0] = bridgeHPrefab[0];
+            bridgePrefab[1] = bridgeHPrefab[1];
+            bridgePrefab[2] = bridgeHPrefab[2];
+            bridgePrefab[3] = bridgeHPrefab[3];
         }
+
+        ballMat = ballMatsList[Random.Range(0, ballMatsList.Count)];
+        playerPrefab.GetComponent<Renderer>().material = ballMat;
+
+        RandomColor();
 
         var maze = MazeGenerator.Generate(width, height);
         Draw(maze);
@@ -62,7 +62,7 @@ public class MazeRenderer : MonoBehaviour
         var target = Instantiate(targetPrefab, transform) as Transform;
         target.position = new Vector3(width - 1, 0.55f, height - 1);
 
-         
+        
 
     }
 
@@ -90,12 +90,12 @@ public class MazeRenderer : MonoBehaviour
 
                 if (numberOfWalls == 0)
                 {
-                    var bridge = Instantiate(bridge4Prefab, transform) as Transform;
+                    var bridge = Instantiate(bridgePrefab[3], transform) as Transform;
                     bridge.position = position;
                 }
                 else if (numberOfWalls == 1)
                 {
-                    var bridge = Instantiate(bridge3Prefab, transform) as Transform;
+                    var bridge = Instantiate(bridgePrefab[2], transform) as Transform;
                     bridge.position = position;
                     if (cell.HasFlag(WallState.RIGHT))
                         bridge.eulerAngles = new Vector3(0, 90, 0);
@@ -106,18 +106,18 @@ public class MazeRenderer : MonoBehaviour
                 } 
                 else if (cell.HasFlag(WallState.UP) && cell.HasFlag(WallState.DOWN))
                 {
-                    var bridge = Instantiate(bridge1Prefab, transform) as Transform;
+                    var bridge = Instantiate(bridgePrefab[0], transform) as Transform;
                     bridge.position = position;
                 }
                 else if (cell.HasFlag(WallState.LEFT) && cell.HasFlag(WallState.RIGHT))
                 {
-                    var bridge = Instantiate(bridge1Prefab, transform) as Transform;
+                    var bridge = Instantiate(bridgePrefab[0], transform) as Transform;
                     bridge.position = position;
                     bridge.eulerAngles = new Vector3(0, 90, 0);
                 }
                 else
                 {
-                    var bridge = Instantiate(bridge2Prefab, transform) as Transform;
+                    var bridge = Instantiate(bridgePrefab[1], transform) as Transform;
                     bridge.position = position;
                     if (cell.HasFlag(WallState.LEFT) && cell.HasFlag(WallState.UP))
                         bridge.eulerAngles = new Vector3(0, bridge.eulerAngles.y + 270, 0);
@@ -156,6 +156,19 @@ public class MazeRenderer : MonoBehaviour
 
         }
 
+    }
+
+    private void RandomColor()
+    {
+        float H, S, V;
+        Color color1 = colors[Random.Range(0, colors.Count)];
+        Color.RGBToHSV(color1,out H, out S, out V);
+        Color color2 = Color.HSVToRGB(((H + 120)%360) / 360, 0.75f, 1);
+        Color color3 = Color.HSVToRGB(((((H + 120) % 360) + 120)%360) / 360, 0.75f, 1);
+
+        mazeMat.SetColor("_Color", color2);
+        skyboxMat.SetColor("_Color2", color1);
+        ballMat.SetColor("_Color", color3);
     }
 
 }
