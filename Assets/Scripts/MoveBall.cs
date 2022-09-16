@@ -73,6 +73,7 @@ public class MoveBall : MonoBehaviour
             rb.AddForce(sphereForward.up * jumpForce, ForceMode.Impulse);
             hasJumped = true;
             this.GetComponentInChildren<TrailRenderer>().enabled = true;
+            SoundManager.Instance.PlayJumpSound();
             jump = false;
         }
             
