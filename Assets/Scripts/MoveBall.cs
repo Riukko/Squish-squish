@@ -84,6 +84,8 @@ public class MoveBall : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && hasJumped)
         {
             hasJumped = false;
+            
+
             this.GetComponentInChildren<TrailRenderer>().enabled = false;
             var vfx = Instantiate(vfxJump, collision.contacts[0].point, Quaternion.identity);
             vfx.transform.parent = transform;

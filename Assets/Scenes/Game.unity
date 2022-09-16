@@ -268,6 +268,31 @@ PrefabInstance:
       propertyPath: m_Antialiasing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 525984596176942389, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 525984596176942389, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 525984596176942389, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525984596176942389, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 525984596176942389, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 525984596176942390, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
         type: 3}
       propertyPath: m_TagString
@@ -332,6 +357,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525984597609092004, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
+        type: 3}
+      propertyPath: moveTowardsDelta
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 525984597769435731, guid: 32d9a51cf28030b4cb85b95ba7f0c247,
         type: 3}

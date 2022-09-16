@@ -26,5 +26,5 @@ Material:
     - _UpVectorYaw: 0
     m_Colors:
     - _Color1: {r: 1, g: 1, b: 1, a: 1}
-    - _Color2: {r: 1, g: 0, b: 0.4280281, a: 1}
+    - _Color2: {r: 0.5236325, g: 0, b: 1, a: 1}
     - _UpVector: {r: 0, g: 1, b: 0, a: 0}
